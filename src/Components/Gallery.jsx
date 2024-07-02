@@ -102,7 +102,7 @@ const Gallery = () => {
       <GalleryContainer marginTop={'0px'}>
         <ImageContainer>
           <ImageBox onClick={handleOpen}>
-            <img src="src/assets/site_rapo_2.png" alt="Image 1" />
+            <img src="assets/site_rapo_2.png" alt="Image 1" />
           </ImageBox>
           <TextContainer sx={{ mr: '-130px', paddingLeft: 7, paddingRight: 0 }}>
             <Title>RAPÓ CREATIVE</Title>
