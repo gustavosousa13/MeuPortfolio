@@ -3,11 +3,43 @@ import React, { useState } from 'react';
 
 export default function MyContact() {
   const [message, setMessage] = useState('');
+  const [subject, setSubject] = useState('');
+  const [feedback, setFeedback] = useState('');
   const maxChars = 400;
 
-  const handleChange = (event) => {
+  const handleChangeMessage = (event) => {
     if (event.target.value.length <= maxChars) {
       setMessage(event.target.value);
+    }
+  };
+
+  const handleChangeSubject = (event) => {
+    setSubject(event.target.value);
+  };
+
+  const handleSendEmail = async () => {
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          subject: subject,
+          body: message,
+        }),
+      });
+
+      if (response.ok) {
+        setFeedback('Email enviado com sucesso!');
+        setMessage('');
+        setSubject('');
+      } else {
+        setFeedback('Erro ao enviar o email.');
+      }
+    } catch (error) {
+      console.error('Erro ao enviar o email:', error);
+      setFeedback('Erro ao enviar o email.');
     }
   };
 
@@ -19,8 +51,30 @@ export default function MyContact() {
       <Box>
         <Typography fontSize={'24px'}>Luis Gustavo de Sousa Santos</Typography>
         <Typography fontSize={'24px'}>email: gustavosantos.rrt@gmail.com</Typography>
-        <Button sx={{ fontSize: '18px', marginLeft:-1 }}>GitHub</Button>
+        <Button sx={{ fontSize: '18px', marginLeft: -1 }}>GitHub</Button>
         <Button sx={{ fontSize: '18px' }}>LinkedIn</Button>
+      </Box>
+      <Box sx={{ marginTop: 5 }}>
+        <Typography fontSize={'24px'}>Subject</Typography>
+        <TextField
+          variant="outlined"
+          placeholder="Type the subject here..."
+          value={subject}
+          onChange={handleChangeSubject}
+          fullWidth
+          sx={{
+            width: '800px',
+            marginTop: 2,
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'gray',
+              },
+              '&:hover fieldset': {
+                borderColor: 'blue',
+              },
+            },
+          }}
+        />
       </Box>
       <Box sx={{ marginTop: 5 }}>
         <Typography fontSize={'24px'}>Message</Typography>
@@ -31,12 +85,12 @@ export default function MyContact() {
             variant="outlined"
             placeholder="Type your message here..."
             value={message}
-            onChange={handleChange}
+            onChange={handleChangeMessage}
             fullWidth
             inputProps={{ maxLength: maxChars }}
             sx={{
-              width:'800px',
-                marginTop: 2,
+              width: '800px',
+              marginTop: 2,
               '& .MuiOutlinedInput-root': {
                 '& fieldset': {
                   borderColor: 'gray',
@@ -70,9 +124,17 @@ export default function MyContact() {
             },
             cursor: 'pointer',
           }}
+          onClick={handleSendEmail}
         >
           Send
         </Button>
+        {feedback && (
+          <Typography
+            sx={{ marginTop: 2, color: feedback.includes('sucesso') ? 'green' : 'red' }}
+          >
+            {feedback}
+          </Typography>
+        )}
       </Box>
     </Box>
   );
