@@ -1,7 +1,6 @@
 import { Typography, Box } from '@mui/material'
 import React from 'react'
 import MyStory from './MyStory'
-import MyContact from './MyContact'
 import MySkills from './MySkills'
 
 export default function MyExperience() {
