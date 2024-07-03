@@ -5,6 +5,7 @@ export default function MyContact() {
   const [message, setMessage] = useState('');
   const [subject, setSubject] = useState('');
   const [feedback, setFeedback] = useState('');
+  const [isSending, setIsSending] = useState(false);
   const maxChars = 400;
 
   const handleChangeMessage = (event) => {
@@ -18,8 +19,9 @@ export default function MyContact() {
   };
 
   const handleSendEmail = async () => {
+    setIsSending(true);
     try {
-      const response = await fetch('/api/send-email', {
+      const response = await fetch('/MeuPortfolio/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -35,11 +37,15 @@ export default function MyContact() {
         setMessage('');
         setSubject('');
       } else {
-        setFeedback('Erro ao enviar o email.');
+        const errorText = await response.text();
+        setFeedback(`Erro ao enviar o email: ${errorText}`);
       }
     } catch (error) {
       console.error('Erro ao enviar o email:', error);
-      setFeedback('Erro ao enviar o email.');
+      setFeedback('Erro ao enviar o email. Verifique sua conexão com a internet.');
+    } finally {
+      setIsSending(false);
+      setTimeout(() => setFeedback(''), 5000); // Limpa a mensagem de feedback após 5 segundos
     }
   };
 
@@ -125,8 +131,9 @@ export default function MyContact() {
             cursor: 'pointer',
           }}
           onClick={handleSendEmail}
+          disabled={isSending}
         >
-          Send
+          {isSending ? 'Sending...' : 'Send'}
         </Button>
         {feedback && (
           <Typography

@@ -26,6 +26,7 @@
     "react-router-dom": "^6.24.0",
     "scrollreveal": "^4.0.9",
     "styled-components": "^6.1.11",
+    "uuid": "^10.0.0",
     "vercel": "^34.2.8"
   },
   "devDependencies": {
