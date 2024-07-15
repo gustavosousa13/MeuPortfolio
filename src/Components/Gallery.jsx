@@ -107,8 +107,9 @@ const Gallery = () => {
           <TextContainer sx={{ mr: '-130px', paddingLeft: 7, paddingRight: 0 }}>
             <Title>RAPÓ CREATIVE</Title>
             <Subtitle paddingTop={2}>
-            <FiberManualRecordIcon sx={{fontSize:'14px'}}/> Projeto realizado com React JS <br/><FiberManualRecordIcon sx={{fontSize:'14px'}}/> Ultilizando a biblioteca MUI
+            <FiberManualRecordIcon sx={{fontSize:'14px'}}/> Projeto em andamento ultilizando React JS <br/><FiberManualRecordIcon sx={{fontSize:'14px'}}/>Biblioteca MUI
             </Subtitle>
+            <a href="https://gustavosousa13.github.io/Rapocreative/" target="_blank" rel="noopener noreferrer">
             <Button
               sx={{
                 color: 'black',
@@ -128,6 +129,7 @@ const Gallery = () => {
             >
               Saiba mais
             </Button>
+            </a>
           </TextContainer>
         </ImageContainer>
 

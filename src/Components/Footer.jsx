@@ -9,6 +9,8 @@ export default function Footer() {
     <Typography  fontSize={'24px'}>Interested in working together? </Typography>
 </Box>
 <Box>
+<a href="https://github.com/gustavosousa13" target="_blank" rel="noopener noreferrer">
+
 <Button
       variant='contained'
       sx={{
@@ -22,6 +24,7 @@ export default function Footer() {
     >
       Get in touch
     </Button> 
+    </a>
 </Box>
 
    </Box>
