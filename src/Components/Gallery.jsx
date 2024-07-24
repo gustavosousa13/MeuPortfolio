@@ -109,7 +109,7 @@ const Gallery = () => {
             <Subtitle paddingTop={2}>
             <FiberManualRecordIcon sx={{fontSize:'14px'}}/> Projeto em andamento ultilizando React JS <br/><FiberManualRecordIcon sx={{fontSize:'14px'}}/>Biblioteca MUI
             </Subtitle>
-            <a href="https://gustavosousa13.github.io/Rapocreative/" target="_blank" rel="noopener noreferrer">
+            <a href="https://rapo-creative.web.app/" target="_blank" rel="noopener noreferrer">
             <Button
               sx={{
                 color: 'black',
@@ -144,7 +144,7 @@ const Gallery = () => {
               <CloseIcon />
             </IconButton>
             <iframe
-              src="https://gustavosousa13.github.io/Rapocreative/"
+              src="https://rapo-creative.web.app/"
               title="Rapó Creative"
               width="100%"
               height="100%"
